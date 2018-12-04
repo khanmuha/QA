@@ -21,21 +21,38 @@ import muhammadkhan.QAdemo.model.Account;
 @RestController
 public class AccountController {
 
+	@Autowired
+	private AccountRepository accountRepository;
+	
+	@Autowired
+	private ObjectMapper objectMapper;
 	
 	@GetMapping("/rest/account/json")
 	public List<Account> getAllAccount() {
-		return null;
+		return accountRepository.findAll();
 	}
 	
 	@PostMapping("/rest/account/json")   
 	public ResponseEntity<ObjectNode> addAccount(@RequestBody Account newAccount){
 		
-	return null;
+		ObjectNode jsonObject = objectMapper.createObjectNode();
+		
+		Account savedAccount = accountRepository.save(newAccount);
+		if(savedAccount!=null) {			
+			jsonObject.put("message", "account has been successfully added");
+		} else {
+			jsonObject.put("message", "Could not create account");
+		}
+		
+		return new ResponseEntity<ObjectNode>(jsonObject, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/rest/acccount/json/{id}")
 	public ResponseEntity<ObjectNode> deleteAccount(@PathVariable  Long id){
-		return null;
+		accountRepository.deleteById(id);
+		ObjectNode jsonObject = objectMapper.createObjectNode();
+		jsonObject.put("message", "account successfully deleted");
+		return new ResponseEntity<ObjectNode>(jsonObject, HttpStatus.OK);
 	}
 			
 }
