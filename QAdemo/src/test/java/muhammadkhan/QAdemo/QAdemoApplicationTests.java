@@ -1,9 +1,8 @@
 package muhammadkhan.QAdemo;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +36,8 @@ public class QAdemoApplicationTests {
 	
 	@Test
 	public void deleteAccount() throws Exception {
-		this.mvc.perform(get("/rest/account/json/1")).andExpect(status().isOk());	
+		
+		this.mvc.perform(get("/rest/account/json/1")).andExpect(status().isOk());
+		
 	}
-	
 }
