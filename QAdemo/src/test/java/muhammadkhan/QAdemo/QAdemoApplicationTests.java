@@ -10,7 +10,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class QAdemoApplicationTests {
 
 	@Test
-	public void contextLoads() {
+	public void retreiveAllAccount() {
+		
 	}
-
+	
+	@Test
+	public void addAccount() {
+		
+	}
+	
+	@Test
+	public void deleteAccount() {
+		
+	}
+	
 }
